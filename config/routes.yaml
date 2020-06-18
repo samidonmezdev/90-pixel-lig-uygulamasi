@@ -1,3 +1,17 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+takim:
+  path: /takim
+  # the controller value has the format 'controller_class::method_name'
+  controller: App\Controller\TakimController::index
+
+takim_form:
+  path: /takim/ekle
+  # the controller value has the format 'controller_class::method_name'
+  controller: App\Controller\TakimController::ekleIndex
+takim_add:
+  path: /takim/add
+  # the controller value has the format 'controller_class::method_name'
+  controller: App\Controller\TakimController::ekle
+  methods: POST

@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TakimController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    ul li{list-style: none}
+    hr{
+        border: 6px solid black;
+    }
+
+</style>
+
+<div class="example-wrapper">
+
+
+    {%   if takimlar|length==18 %}
+        {%   if maclar|length==0 %}
+        <a  class="btn btn-success float-right" href="{{ path('fiksturolustur') }}">Fikstur Olustur</a>
+        {%   endif %}
+    {%   else %}
+        <a  class="btn btn-success float-right" href="{{ path('takim_form') }}">Takım ekle</a>
+    {%   endif %}
+    <h1>Takimlar ✅</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Ad</th>
+            <th scope="col">G</th>
+            <th scope="col">M</th>
+            <th scope="col">B</th>
+            <th scope="col">AG</th>
+            <th scope="col">YG</th>
+            <th scope="col">AV</th>
+            <th scope="col">PUAN</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for takim in takimlar %}
+            <tr>
+                <th scope="row">{{ takim.ad }}</th>
+                <td>{{ takim.galibiyet }}</td>
+                <td>{{ takim.maglubiyet }}</td>
+                <td>{{ takim.beraberlik }}</td>
+                <td>{{ takim.atilangol }}</td>
+                <td>{{ takim.yenilengol}}</td>
+                <td>{{ takim.averaj }}</td>
+                <td>{{ takim.puan }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {%   if maclar|length>0 %}
+    <div class="col-md-12">
+        <ul>
+            {% set bas=0 %}
+            {% set ara=18 %}
+            {% for mac in maclar %}
+
+                {%  if  ara==mac.hafta%}
+                    {% set ara=-1 %}
+                <div class="col-md-12 mx-2 my-5"> <p class="alert alert-primary text-center  ">Lig arası</p></div>
+                {%   endif %}
+                {% if  bas!=mac.hafta%}
+                {% set bas=mac.hafta %}
+                    <div class="col-md-12 my-4">
+                    {% if  mac.t1gol==-1%}
+                        <a href="{{ path('macoyna',{id:bas}) }}" class="btn btn-info float-right">{{ bas }}.HAFTA MAÇLARINI OYNA</a>
+                    {% endif %}
+                    <h3>HAFTA {{ mac.hafta }}</h3>
+
+                    </div><hr>
+
+
+                {%   endif %}
+                <li><h5><b>{{ mac.takim1.ad}}</b>({{  mac.t1gol!=-1?mac.t1gol:''}})  -  ({{  mac.t2gol!=-1?mac.t2gol:''}})<b>{{ mac.takim2.ad}}</b></h5></li>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+    {%   endif %}
+</div>
+    {%  if  takimlar[0].hafta==34 %}
+
+        <div class="col-md-12 mx-2 my-5">
+            <h3>LİG KAZANANI</h3>
+            <p class="alert alert-success text-center "><h2>{{ takimlar[0].ad}}</h2></p>
+        </div>
+    {%   endif %}
+
+{% endblock %}
