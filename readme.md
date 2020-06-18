@@ -31,6 +31,6 @@ Symfony ve Doctrine kullanarak Süper Lig sezonu simülasyonu yapmanız isteniyo
 - env.copy dosyasını .env dosyasına cevir
 - DATABASE_URL=mysql://root:@127.0.0.1:3306/ftbl düzenle
 - php bin/console d:d:c
-- php bin/console d:m:m
+- php bin/console doctrine:migration:migrate
 - symfony serve (symfony CLI kurulu olmalı)
 - proje hazır
