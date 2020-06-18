@@ -64,12 +64,12 @@ class Takimlar
      */
     private $maclars2;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $puan;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $averaj;
     public function __construct()
