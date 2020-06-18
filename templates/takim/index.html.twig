@@ -83,12 +83,14 @@
     </div>
     {%   endif %}
 </div>
+    {%  if  takimlar!=null %}
     {%  if  takimlar[0].hafta==34 %}
 
         <div class="col-md-12 mx-2 my-5">
             <h3>LİG KAZANANI</h3>
             <p class="alert alert-success text-center "><h2>{{ takimlar[0].ad}}</h2></p>
         </div>
+    {%   endif %}
     {%   endif %}
 
 {% endblock %}
